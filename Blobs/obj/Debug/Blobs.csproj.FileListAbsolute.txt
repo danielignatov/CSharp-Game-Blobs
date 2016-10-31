@@ -1,1 +1,6 @@
 C:\Users\Даниел\Documents\GitHub\CSharp-Game-Blobs\Blobs\bin\Debug\Blobs.exe.config
+C:\Users\Даниел\Documents\GitHub\CSharp-Game-Blobs\Blobs\bin\Debug\Blobs.exe
+C:\Users\Даниел\Documents\GitHub\CSharp-Game-Blobs\Blobs\bin\Debug\Blobs.pdb
+C:\Users\Даниел\Documents\GitHub\CSharp-Game-Blobs\Blobs\obj\Debug\Blobs.csprojResolveAssemblyReference.cache
+C:\Users\Даниел\Documents\GitHub\CSharp-Game-Blobs\Blobs\obj\Debug\Blobs.exe
+C:\Users\Даниел\Documents\GitHub\CSharp-Game-Blobs\Blobs\obj\Debug\Blobs.pdb
