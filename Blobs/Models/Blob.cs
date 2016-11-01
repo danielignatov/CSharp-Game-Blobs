@@ -3,10 +3,6 @@
     using Enums;
     using Interfaces;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class Blob : IBlob
     {
@@ -23,6 +19,10 @@
 
         private bool isBlobDead;
 
+        private bool isBehaviorActivated;
+
+        private int initialHealth;
+
         // Constructor
         public Blob(string name, int health, int attackDamage, BehaviorType behaviorType, AttackType currentAttackType)
         {
@@ -31,7 +31,13 @@
             this.AttackDamage = attackDamage;
             this.CurrentBehaviorType = behaviorType;
             this.CurrentAttackType = currentAttackType;
+            if (this.CurrentAttackType == AttackType.Blobplode)
+            {
+                this.AttackDamage *= 2;
+            }
             this.isBlobDead = false;
+            this.isBehaviorActivated = false;
+            this.initialHealth = health;
         }
 
         // Properties
@@ -65,6 +71,44 @@
                 if (this.health <= 0)
                 {
                     this.isBlobDead = true;
+                }
+                else if (this.health <= (this.initialHealth / 2))
+                {
+                    // Activate behavior
+                    if (this.isBehaviorActivated == false)
+                    {
+                        if (this.CurrentBehaviorType == BehaviorType.Aggressive)
+                        {
+                            this.AttackDamage *= 2;
+                        }
+                        else if (this.CurrentBehaviorType == BehaviorType.Inflated)
+                        {
+                            this.health += 50;
+                        }
+
+                        this.isBehaviorActivated = true;
+                    }
+                    else
+                    {
+                        if (this.CurrentBehaviorType == BehaviorType.Aggressive)
+                        {
+                            this.health -= 5;
+                        }
+                        else if (this.CurrentBehaviorType == BehaviorType.Inflated)
+                        {
+                            this.health -= 10;
+                        }
+
+                        if (this.CurrentAttackType == AttackType.Blobplode)
+                        {
+                            this.health /= 2;
+                        }
+
+                        if (this.health <= 0)
+                        {
+                            this.isBlobDead = true;
+                        }
+                    }
                 }
             }
         }
@@ -114,6 +158,11 @@
             {
                 return this.isBlobDead;
             }
+        }
+
+        public void Update()
+        {
+
         }
     }
 }

@@ -1,15 +1,9 @@
 ﻿namespace Blobs
 {
-    using Blobs.Models;
     using Core;
     using Core.Factories;
     using Interfaces;
     using IO;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     class Program
     {

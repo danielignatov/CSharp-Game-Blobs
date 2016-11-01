@@ -17,7 +17,7 @@
         private IAttackTypeFactory attackFactory;
         private IBehaviorTypeFactory behaviorFactory;
 
-        private List<IBlob> blobDatabase;
+        private List<IBlob> blobDatabase = new List<IBlob>();
 
         // Constructor
         public Engine(
@@ -56,17 +56,7 @@
             {
                 string[] commandArgs = InputReader.ReadLine().Trim().Split();
                 this.ProcessCommand(commandArgs);
-                this.Update();
             }
-        }
-
-        private void Update()
-        {
-            // TODO:
-            // Foreach blobs in database with blob.Update
-            // Create blob.Update!
-
-            throw new NotImplementedException();
         }
 
         private void ProcessCommand(string[] commandArgs)
@@ -78,7 +68,7 @@
                 case "attack":
                     this.BlobAttackAnotherBlob(commandArgs); break;
                 case "pass":
-                    this.Update(); break;
+                    break;
                 case "status":
                     this.OutputStatusOfBlobs(); break;
                 case "drop":
@@ -116,7 +106,17 @@
 
         private void OutputStatusOfBlobs()
         {
-            throw new NotImplementedException();
+            foreach (var blob in this.blobDatabase)
+            {
+                if (blob.IsBlobDead == true)
+                {
+
+                }
+                else
+                {
+                    this.OutputWriter.WriteLine("");
+                }
+            }
         }
 
         private void BlobAttackAnotherBlob(string[] commandArgs)
@@ -124,6 +124,9 @@
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Creates new Blob and add him in database.
+        /// </summary>
         private void CreateBlob(string[] commandArgs)
         {
             IBlob newBlob = new Blob(
