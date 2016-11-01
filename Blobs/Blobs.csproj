@@ -43,9 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\Factories\AttackTypeFactory.cs" />
+    <Compile Include="Core\Factories\BehaviorTypeFactory.cs" />
     <Compile Include="Enums\AttackType.cs" />
     <Compile Include="Enums\BehaviorType.cs" />
+    <Compile Include="Interfaces\IAttackTypeFactory.cs" />
+    <Compile Include="Interfaces\IBehaviorTypeFactory.cs" />
     <Compile Include="Interfaces\IBlob.cs" />
+    <Compile Include="Interfaces\IEngine.cs" />
+    <Compile Include="IO\ConsoleReader.cs" />
+    <Compile Include="Interfaces\IInputReader.cs" />
+    <Compile Include="IO\ConsoleWriter.cs" />
+    <Compile Include="Interfaces\IOutputWriter.cs" />
+    <Compile Include="IO\Message.cs" />
     <Compile Include="Models\Blob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
