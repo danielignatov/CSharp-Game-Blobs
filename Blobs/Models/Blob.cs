@@ -118,8 +118,7 @@
 
         public void Update()
         {
-            float exactHalfOfInitialHealth = this.initialHealth / 2f;
-            int halfOfInitialHealth = (int)Math.Ceiling(exactHalfOfInitialHealth);
+            int halfOfInitialHealth = (int)Math.Ceiling(this.initialHealth / 2);
 
             if (this.Health <= 0)
             {

@@ -87,15 +87,15 @@
         /// </summary>
         public void Run()
         {
-            //string gameTitle = $"####################################################{Environment.NewLine}" +
-            //                   $"#         ####   #       ###   ####    ####        #{Environment.NewLine}" +
-            //                   $"#         #   #  #      #   #  #   #  #            #{Environment.NewLine}" +
-            //                   $"#         ####   #      #   #  ####    ###         #{Environment.NewLine}" +
-            //                   $"#         #   #  #      #   #  #   #      #        #{Environment.NewLine}" +
-            //                   $"#         ####   #####   ###   ####   ####         #{Environment.NewLine}" +
-            //                   $"####################################################";
-            //
-            //this.OutputWriter.WriteLine(gameTitle);
+            string gameTitle = $"####################################################{Environment.NewLine}" +
+                               $"#         ####   #       ###   ####    ####        #{Environment.NewLine}" +
+                               $"#         #   #  #      #   #  #   #  #            #{Environment.NewLine}" +
+                               $"#         ####   #      #   #  ####    ###         #{Environment.NewLine}" +
+                               $"#         #   #  #      #   #  #   #      #        #{Environment.NewLine}" +
+                               $"#         ####   #####   ###   ####   ####         #{Environment.NewLine}" +
+                               $"####################################################";
+            
+            this.OutputWriter.WriteLine(gameTitle);
 
             while (true)
             {
@@ -145,7 +145,7 @@
                     this.Help();
                     break;
                 default:
-                    //this.OutputWriter.WriteLine("Invalid command arguments, type \"help\" to see valid command examples.");
+                    this.OutputWriter.WriteLine("Invalid command arguments, type \"help\" to see valid command examples.");
                     break;
             }
         }
