@@ -21,7 +21,9 @@
 
         private bool isBehaviorActivated;
 
-        private int initialHealth;
+        private float initialHealth;
+
+        private int initialAttackDamage;
 
         // Constructor
         public Blob(string name, int health, int attackDamage, BehaviorType behaviorType, AttackType currentAttackType)
@@ -31,13 +33,10 @@
             this.AttackDamage = attackDamage;
             this.CurrentBehaviorType = behaviorType;
             this.CurrentAttackType = currentAttackType;
-            if (this.CurrentAttackType == AttackType.Blobplode)
-            {
-                this.AttackDamage *= 2;
-            }
             this.isBlobDead = false;
             this.isBehaviorActivated = false;
             this.initialHealth = health;
+            this.initialAttackDamage = attackDamage;
         }
 
         // Properties
@@ -67,49 +66,6 @@
             set
             {
                 this.health = value;
-
-                if (this.health <= 0)
-                {
-                    this.isBlobDead = true;
-                }
-                else if (this.health <= (this.initialHealth / 2))
-                {
-                    // Activate behavior
-                    if (this.isBehaviorActivated == false)
-                    {
-                        if (this.CurrentBehaviorType == BehaviorType.Aggressive)
-                        {
-                            this.AttackDamage *= 2;
-                        }
-                        else if (this.CurrentBehaviorType == BehaviorType.Inflated)
-                        {
-                            this.health += 50;
-                        }
-
-                        this.isBehaviorActivated = true;
-                    }
-                    else
-                    {
-                        if (this.CurrentBehaviorType == BehaviorType.Aggressive)
-                        {
-                            this.health -= 5;
-                        }
-                        else if (this.CurrentBehaviorType == BehaviorType.Inflated)
-                        {
-                            this.health -= 10;
-                        }
-
-                        if (this.CurrentAttackType == AttackType.Blobplode)
-                        {
-                            this.health /= 2;
-                        }
-
-                        if (this.health <= 0)
-                        {
-                            this.isBlobDead = true;
-                        }
-                    }
-                }
             }
         }
 
@@ -162,7 +118,83 @@
 
         public void Update()
         {
+            float exactHalfOfInitialHealth = this.initialHealth / 2f;
+            int halfOfInitialHealth = (int)Math.Ceiling(exactHalfOfInitialHealth);
 
+            if (this.Health <= 0)
+            {
+                if ((this.isBehaviorActivated == false) && (this.CurrentBehaviorType == BehaviorType.Inflated))
+                {
+                    this.Health = 50;
+                    this.isBehaviorActivated = true;
+                    return;
+                }
+                else
+                {
+                    this.isBlobDead = true;
+                    return;
+                }
+            }
+
+            // Activate behavior if not activated
+            if ((this.Health <= halfOfInitialHealth) && (this.isBehaviorActivated == false))
+            {
+                if (this.CurrentBehaviorType == BehaviorType.Aggressive)
+                {
+                    this.AttackDamage *= 2;
+                }
+                else if (this.CurrentBehaviorType == BehaviorType.Inflated)
+                {
+                    this.Health += 50;
+                }
+
+                this.isBehaviorActivated = true;
+            }
+            else if (this.isBehaviorActivated == true)
+            {
+                if (this.CurrentBehaviorType == BehaviorType.Aggressive)
+                {
+                    if ((this.AttackDamage - 5) >= this.initialAttackDamage)
+                    {
+                        this.AttackDamage -= 5;
+                    }
+                    else
+                    {
+                        this.AttackDamage = this.initialAttackDamage;
+                    }
+                }
+                else if (this.CurrentBehaviorType == BehaviorType.Inflated)
+                {
+                    this.health -= 10;
+
+                    if (this.Health <= 0)
+                    {
+                        this.isBlobDead = true;
+                    }
+                }
+            }
+        }
+
+        public void ProduceAttack()
+        {
+            if (this.CurrentAttackType == AttackType.Blobplode)
+            {
+                this.Health /= 2;
+                this.AttackDamage *= 2;
+            }
+
+            if (this.Health <= 0)
+            {
+                this.isBlobDead = true;
+            }
+        }
+
+        public void AfterAttack()
+        {
+            if (this.CurrentAttackType == AttackType.Blobplode)
+            {
+                this.AttackDamage /= 2;
+            }
         }
     }
 }

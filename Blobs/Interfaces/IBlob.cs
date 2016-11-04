@@ -10,5 +10,8 @@
         BehaviorType? CurrentBehaviorType { get; set; }
         AttackType CurrentAttackType { get; set; }
         bool IsBlobDead { get; }
+        void Update();
+        void ProduceAttack();
+        void AfterAttack();
     }
 }

@@ -56,7 +56,6 @@
     <Compile Include="Interfaces\IInputReader.cs" />
     <Compile Include="IO\ConsoleWriter.cs" />
     <Compile Include="Interfaces\IOutputWriter.cs" />
-    <Compile Include="IO\Message.cs" />
     <Compile Include="Models\Blob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
